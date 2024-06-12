@@ -29,7 +29,7 @@ CFLAGS = -Werror -Wall -Wextra
 
 RM = rm -rf
 
-SRCS = test.c\
+SRCS = source/main.c\
 
 OBJS = $(SRCS:.c=.o)
 
