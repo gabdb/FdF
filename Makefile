@@ -29,7 +29,8 @@ CFLAGS = -Werror -Wall -Wextra
 
 RM = rm -rf
 
-SRCS = 
+SRCS = test.c\
+
 OBJS = $(SRCS:.c=.o)
 
 
@@ -59,6 +60,6 @@ fclean : clean
 
 clean :
 	@make clean -C libft
-	@$(RM) source/*.o
+	@$(RM) source/*.o mlx/*.o
 
 re : fclean all
