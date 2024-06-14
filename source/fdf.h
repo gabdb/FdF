@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/14 17:24:52 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:02:29 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@
 # include <stdio.h>
 # include <math.h>
 
+//STRUCTURES
 
+//PARSING
+
+typedef struct  s_point
+{
+    int	x;
+    int	y;
+	int	z;
+	int	color;
+}               t_point;
 
 #endif
