@@ -29,7 +29,9 @@ CFLAGS = -Werror -Wall -Wextra
 
 RM = rm -rf
 
-SRCS = source/main.c\
+SRCS =	source/test.c\
+		source/get_next_line.c\
+		source/get_next_line_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 
