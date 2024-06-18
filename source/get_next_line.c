@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 19:15:52 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/14 17:16:23 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:43:16 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,3 +132,30 @@ char	*get_next_line(int fd)
 		return (free(rest), rest = NULL, free(v.line), free(v.buffer), NULL);
 	return (free(v.buffer), v.line);
 }
+
+/*
+int main() {
+    int fd;
+    char *line;
+
+    fd = open("tekst.txt", O_RDONLY);
+    if (fd == -1) {
+        perror("Error opening file");
+        return (1);
+    }
+	
+	int i = 0;
+	while (i < 12) // && line != NULL)
+	{
+		line = get_next_line(fd);
+        printf("%d'th line: %s", i + 1, line); 
+		if(line == NULL)
+			exit(0); // Print each line as it's read
+		free(line); // Don't forget to free memory!
+		i++;
+    }
+
+    close(fd);
+    return (0);
+}
+*/
