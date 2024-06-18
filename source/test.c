@@ -52,7 +52,7 @@ int main(void)
 	return (0);
 }
 */
-
+/*
 int main(void)
 {
 	void	*mlx;
@@ -89,3 +89,4 @@ int main(void)
 
 	return (0);
 }
+*/

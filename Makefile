@@ -25,13 +25,14 @@ MLX_LIB = -L $(MLX_DIR) -lmlx
 
 CC = cc
 
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra -fsanitize=address -g
 
 RM = rm -rf
 
 SRCS =	source/test.c\
 		source/get_next_line.c\
 		source/get_next_line_utils.c\
+		source/parsing.c\
 
 OBJS = $(SRCS:.c=.o)
 
