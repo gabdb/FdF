@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/20 15:35:22 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:56:20 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ t_point	*parsing(char *map, int total_length, int one_line_len)
 	return (result);
 }
 
+/*
 int main(int ac, char **av)
 {
 	int		*result;
@@ -151,3 +152,4 @@ int main(int ac, char **av)
 
 	return 0;
 }
+*/

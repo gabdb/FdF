@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/20 15:21:50 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:57:45 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ typedef struct  s_point
 }               t_point;
 
 //PARSING
-
+int		ft_count_words(char *s, char c);
+void	handle_color(t_point *point, char *map_point);
+int		*check_map(int ac, char **argv);
+t_point	*parsing(char *map, int total_length, int one_line_len);
 
 //HELP_PARSING
 int	index_base(char c, char *base);
