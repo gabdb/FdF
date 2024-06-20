@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/14 18:02:29 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:21:50 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@
 
 //STRUCTURES
 
-//PARSING
-
 typedef struct  s_point
 {
     int	x;
@@ -51,5 +49,12 @@ typedef struct  s_point
 	int	z;
 	int	color;
 }               t_point;
+
+//PARSING
+
+
+//HELP_PARSING
+int	index_base(char c, char *base);
+int	my_atoi_base(char *str);
 
 #endif

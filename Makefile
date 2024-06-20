@@ -33,6 +33,7 @@ SRCS =	source/test.c\
 		source/get_next_line.c\
 		source/get_next_line_utils.c\
 		source/parsing.c\
+		source/help_parsing.c\
 
 OBJS = $(SRCS:.c=.o)
 

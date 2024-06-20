@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/20 14:06:38 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:35:22 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,22 @@ int	ft_count_words(char *s, char c)
 	if (i > 1 && s[i - 1] == '\n' && s[i - 2] == ' ')
 		count--;
 	return (count);
+}
+
+void	handle_color(t_point *point, char *map_point)
+{
+	int		i;
+
+	i = 0;
+	while (map_point[i] && map_point[i] != ',')
+		i++;
+	if (map_point[i] != ',')
+	{
+		(*point).color = 0xFFFFFF; //set to white if no color specified
+		return ;
+	}
+	i += 3; //pr passer de `,` à `F` direct sans `0x`
+	(*point).color = my_atoi_base(map_point + i);
 }
 
 int	*check_map(int ac, char **argv)
@@ -97,7 +113,7 @@ t_point	*parsing(char *map, int total_length, int one_line_len)
 			(result[(i * one_line_len) + j]).x = j;
 			(result[(i * one_line_len) + j]).y = i;
 			(result[(i * one_line_len) + j]).z = ft_atoi(real_line[j]);
-			(result[(i * one_line_len) + j]).color = 0xFF00FF;
+			handle_color(result + (i * one_line_len) + j, real_line[j]);
 		}
 		free(real_line);
 		free(line);
@@ -130,7 +146,7 @@ int main(int ac, char **av)
 
 	int i = -1;
 	while (test[++i].x != -1)
-		printf("x = %d, y = %d, z = %d\n", test[i].x, test[i].y, test[i].z);
+		printf("x = %d, y = %d, z = %d and color = %X\n", test[i].x, test[i].y, test[i].z, test[i].color);
 	free(test);
 
 	return 0;
