@@ -6,13 +6,13 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/18 18:35:41 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:06:38 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_count_words(char const *s, char c)
+int	ft_count_words(char *s, char c)
 {
 	int	count;
 	int	i;
@@ -33,19 +33,22 @@ int	ft_count_words(char const *s, char c)
 	return (count);
 }
 
-int	check_map(int ac, char **argv)
+int	*check_map(int ac, char **argv)
 {
+	int		*result; // [count_lines, one_line_len]
 	int		fd;
 	int		len;
 	int		count_line;
 	char	*line;
 
+	if (ac != 2)
+		exit(EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
 	if (-1 == fd)
 		return (0);
 	line = get_next_line(fd);
-	if (!line || *line == '\0')
-		return (printf("empty map !\n"), 0);
+	if (!line || *line == '\0') //si *line == '\0' faudra free !
+		return (printf("empty map !\n"), NULL);
 	len = ft_count_words(line, ' ');
 	count_line = 1;
 	while (line != NULL)
@@ -56,13 +59,17 @@ int	check_map(int ac, char **argv)
 		{
 			count_line++;
 			if (ft_count_words(line, ' ') != len)
-				return (printf("map not square !\n"), 0);
+				return (free(line), printf("map not square !\n"), NULL);
 		}
 	}
-	return (free(line), count_line * len);
+	result = (int *)malloc(2 * sizeof(int)); //pas protégé, 2 places ca passe
+	*result = count_line;
+	*(result + 1) = len;
+	return (free(line), result);
 }
 
-t_point	*parsing(char *map, int total_length, int one_line_len) //total_length cest le nombre de points sur la map.
+//total_length cest le nombre de points sur la map.
+t_point	*parsing(char *map, int total_length, int one_line_len)
 {
 	char	**real_line;
 	t_point	*result;
@@ -105,9 +112,21 @@ t_point	*parsing(char *map, int total_length, int one_line_len) //total_length c
 
 int main(int ac, char **av)
 {
-	int result = check_map(ac, av);
+	int		*result;
+	int 	one_line_len;
+	t_point	*test;
 
-	t_point *test = parsing(av[1], result, 19);
+	if (access(av[1], F_OK) == -1) //à enlever, cest au cas ou la map nexiste pas (path oublié)
+    {
+        perror("Error");
+        printf("File '%s' does not exist.\n", av[1]);
+        return 1;
+    }
+	result = check_map(ac, av); //result est malloqué, donc free !
+	if (!result)
+		return (1);
+	test = parsing(av[1], result[0] * result[1], result[1]);
+	free(result);
 
 	int i = -1;
 	while (test[++i].x != -1)
