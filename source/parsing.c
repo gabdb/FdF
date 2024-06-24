@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/20 15:56:20 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/24 14:16:59 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,24 @@ t_point	*parsing(char *map, int total_length, int one_line_len)
 	return (result);
 }
 
+void	fill_in_proj(t_point *point)
+{
+	int	i;
+	float	x;
+	float	y;
+	float	z;
+
+	i = 0;
+	while (point[i].x != -1)
+	{
+		x = point[i].x * 20;
+		y = point[i].y * 20;
+		z = point[i].z * 20;
+		point[i].x_proj = (x - y) * (sqrt(3) / 2);
+		point[i].y_proj = ((x + y) / 2) - z;
+		i++;
+	}
+}
 /*
 int main(int ac, char **av)
 {
@@ -145,9 +163,10 @@ int main(int ac, char **av)
 	test = parsing(av[1], result[0] * result[1], result[1]);
 	free(result);
 
+	fill_in_proj(test);
 	int i = -1;
 	while (test[++i].x != -1)
-		printf("x = %d, y = %d, z = %d and color = %X\n", test[i].x, test[i].y, test[i].z, test[i].color);
+		printf("x = %f, y = %f, z = %f, color = %X, x_proj: %f and y_proj: %f\n", test[i].x, test[i].y, test[i].z, test[i].color, test[i].x_proj, test[i].y_proj);
 	free(test);
 
 	return 0;

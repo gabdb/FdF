@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/20 15:57:45 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/24 14:35:23 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,37 @@
 
 typedef struct  s_point
 {
-    int	x;
-    int	y;
-	int	z;
-	int	color;
+    float   x;
+    float   y;
+	float   z;
+	int	    color;
+    float   x_proj;
+    float   y_proj;
 }               t_point;
+
+typedef struct  s_mlx
+{
+    void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
+	char	*img_data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}               t_mlx;
 
 //PARSING
 int		ft_count_words(char *s, char c);
 void	handle_color(t_point *point, char *map_point);
 int		*check_map(int ac, char **argv);
 t_point	*parsing(char *map, int total_length, int one_line_len);
+void	fill_in_proj(t_point *point);
 
 //HELP_PARSING
 int	index_base(char c, char *base);
 int	my_atoi_base(char *str);
+
+//KEYBOARD STUFF
+int handle_esc(int keycode, void *param);
 
 #endif

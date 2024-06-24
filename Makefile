@@ -29,11 +29,12 @@ CFLAGS = -Werror -Wall -Wextra
 
 RM = rm -rf
 
-SRCS =	source/test.c\
+SRCS =	source/main.c\
 		source/get_next_line.c\
 		source/get_next_line_utils.c\
 		source/parsing.c\
 		source/help_parsing.c\
+		source/keyboard.c\
 
 OBJS = $(SRCS:.c=.o)
 
