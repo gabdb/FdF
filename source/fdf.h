@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/24 14:35:23 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:00:17 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,9 @@ int	my_atoi_base(char *str);
 
 //KEYBOARD STUFF
 int handle_esc(int keycode, void *param);
+
+//DRAWINGS
+void	draw_points(t_mlx *v, t_point *point);
+
 
 #endif

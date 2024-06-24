@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:20:06 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/24 16:39:56 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:04:58 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 //juste dessiner les points_proj
 int main(int ac, char **av)
 {
-	int		i;
-	//int		j;
 	t_mlx	v;
 	t_point	*point;
 	int		*map_info;
@@ -28,15 +26,10 @@ int main(int ac, char **av)
 
 	v.mlx_ptr = mlx_init();
 	v.win_ptr = mlx_new_window(v.mlx_ptr, 1000, 1000, "FdF");
-	v.img_ptr = mlx_new_image(v.mlx_ptr, 1000, 1000);
+	v.img_ptr = mlx_new_image(v.mlx_ptr, 900, 900);
 	v.img_data = mlx_get_data_addr(v.img_ptr, &v.bpp, &v.size_line, &v.endian);
 
-	i = 0;
-	while (point[i].x != -1)
-	{
-		*(int *)(v.img_data + ((int)point[i].x_proj * (v.bpp / 8)) + ((int)point[i].y_proj * v.size_line)) = point[i].color;
-		i++;
-	}
+	draw_points(&v, point);
 	mlx_put_image_to_window(v.mlx_ptr, v.win_ptr, v.img_ptr, 0, 0);
 	mlx_key_hook(v.win_ptr, handle_esc, NULL);
 	mlx_loop(v.mlx_ptr);

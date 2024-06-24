@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/24 16:31:48 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:05:35 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,13 +138,13 @@ void	fill_in_proj(t_point *point)
 	i = 0;
 	while (point[i].x != -1)
 	{
-		x = point[i].x * 20;
-		y = point[i].y * 20;
-		z = point[i].z * 20;
+		x = point[i].x * 25;
+		y = point[i].y * 25;
+		z = point[i].z * 25;
 		point[i].x_proj = (x - y) * (sqrt(3) / 2);
 		point[i].y_proj = ((x + y) / 2) - z;
-		point[i].x_proj += 700 / 2;
-		point[i].y_proj += 700 / 2;
+		point[i].x_proj += 400;
+		point[i].y_proj += 400;
 		i++;
 	}
 }
