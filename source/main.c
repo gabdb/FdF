@@ -6,20 +6,47 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:20:06 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/24 14:36:08 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:39:56 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//juste dessiner les points_proj
 int main(int ac, char **av)
 {
-	t_mlx	*v;
+	int		i;
+	//int		j;
+	t_mlx	v;
+	t_point	*point;
+	int		*map_info;
 
+	map_info = check_map(ac, av);
+	point = parsing(av[1], map_info[0] * map_info[1], map_info[1]);
+	free(map_info);
+	fill_in_proj(point);
 
+	v.mlx_ptr = mlx_init();
+	v.win_ptr = mlx_new_window(v.mlx_ptr, 1000, 1000, "FdF");
+	v.img_ptr = mlx_new_image(v.mlx_ptr, 1000, 1000);
+	v.img_data = mlx_get_data_addr(v.img_ptr, &v.bpp, &v.size_line, &v.endian);
+
+	i = 0;
+	while (point[i].x != -1)
+	{
+		*(int *)(v.img_data + ((int)point[i].x_proj * (v.bpp / 8)) + ((int)point[i].y_proj * v.size_line)) = point[i].color;
+		i++;
+	}
+	mlx_put_image_to_window(v.mlx_ptr, v.win_ptr, v.img_ptr, 0, 0);
+	mlx_key_hook(v.win_ptr, handle_esc, NULL);
+	mlx_loop(v.mlx_ptr);
+
+	return (0);
 }
 
-/*
+
+
+/* //ancien test MLX avec Gradient GPT/yann
 int main(void)
 {
 	void	*mlx;
@@ -46,7 +73,7 @@ int main(void)
 		{
 			color = ((x * 255 / 700) << 16) | ((y * 255 / 700) << 8) | (x * y * 255 / (700 * 700));
             *(int *)(img_data + (x * (bpp / 8) + y * size_line)) = color;
-			x++;
+			x++;.
 		}
 		y++;
 	}

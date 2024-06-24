@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/24 14:16:59 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:31:48 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	*check_map(int ac, char **argv)
 		}
 	}
 	result = (int *)malloc(2 * sizeof(int)); //pas protégé, 2 places ca passe
+	if (!result)
+		exit(EXIT_FAILURE); //faut free line aussi
 	*result = count_line;
 	*(result + 1) = len;
 	return (free(line), result);
@@ -141,6 +143,8 @@ void	fill_in_proj(t_point *point)
 		z = point[i].z * 20;
 		point[i].x_proj = (x - y) * (sqrt(3) / 2);
 		point[i].y_proj = ((x + y) / 2) - z;
+		point[i].x_proj += 700 / 2;
+		point[i].y_proj += 700 / 2;
 		i++;
 	}
 }
@@ -148,7 +152,7 @@ void	fill_in_proj(t_point *point)
 int main(int ac, char **av)
 {
 	int		*result;
-	int 	one_line_len;
+	//int 	one_line_len;
 	t_point	*test;
 
 	if (access(av[1], F_OK) == -1) //à enlever, cest au cas ou la map nexiste pas (path oublié)
@@ -158,8 +162,6 @@ int main(int ac, char **av)
         return 1;
     }
 	result = check_map(ac, av); //result est malloqué, donc free !
-	if (!result)
-		return (1);
 	test = parsing(av[1], result[0] * result[1], result[1]);
 	free(result);
 
