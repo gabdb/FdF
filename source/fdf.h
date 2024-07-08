@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/08 17:09:09 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:21:32 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int		ft_count_words(char *s, char c);
 void	handle_color(t_point *point, char *map_point);
 int		*check_map(int ac, char **argv);
 t_point	*parsing(char *map, int total_length, int one_line_len);
-void	fill_in_proj(t_point *point, int *size);
 
 //HELP_PARSING
 int	index_base(char c, char *base);
@@ -79,6 +78,6 @@ int handle_esc(int keycode, void *param);
 
 //DRAWINGS
 void	draw_points(t_mlx *v, t_point *point);
-
+void	fill_in_proj(t_point *point, int *size);
 
 #endif
