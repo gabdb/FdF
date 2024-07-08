@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/24 17:05:35 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:17:42 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,15 +136,15 @@ void	fill_in_proj(t_point *point)
 	float	z;
 
 	i = 0;
-	while (point[i].x != -1)
+	while (point[i].x != -1) //segfault&co, probablement mettre zoom etc. en dynamique en ft. taille map
 	{
-		x = point[i].x * 25;
-		y = point[i].y * 25;
-		z = point[i].z * 25;
+		x = point[i].x * 20;
+		y = point[i].y * 20;
+		z = point[i].z * 20;
 		point[i].x_proj = (x - y) * (sqrt(3) / 2);
 		point[i].y_proj = ((x + y) / 2) - z;
-		point[i].x_proj += 400;
-		point[i].y_proj += 400;
+		point[i].x_proj += 1920 / 2;
+		point[i].y_proj += 1080 / 2;
 		i++;
 	}
 }

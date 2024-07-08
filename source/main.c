@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:20:06 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/06/24 17:04:58 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:20:46 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ int main(int ac, char **av)
 
 	map_info = check_map(ac, av);
 	point = parsing(av[1], map_info[0] * map_info[1], map_info[1]);
+	if (!point)
+		exit(EXIT_FAILURE);
 	free(map_info);
 	fill_in_proj(point);
 
 	v.mlx_ptr = mlx_init();
-	v.win_ptr = mlx_new_window(v.mlx_ptr, 1000, 1000, "FdF");
-	v.img_ptr = mlx_new_image(v.mlx_ptr, 900, 900);
+	v.win_ptr = mlx_new_window(v.mlx_ptr, 1920, 1080, "FdF");
+	v.img_ptr = mlx_new_image(v.mlx_ptr, 1920, 1080);
 	v.img_data = mlx_get_data_addr(v.img_ptr, &v.bpp, &v.size_line, &v.endian);
 
 	draw_points(&v, point);
