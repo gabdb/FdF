@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:20:06 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/08 17:09:21 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:14:59 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ int main(int ac, char **av)
 	t_mlx	v;
 	t_point	*point;
 	int		*map_info;
+	int		one_line_len; //peut etre enlevé pr de la place
+	int		number_lines; //same up
 
 	map_info = check_map(ac, av);
-	point = parsing(av[1], map_info[0] * map_info[1], map_info[1]);
+	one_line_len = map_info[1];
+	number_lines = map_info[0];
+	point = parsing(av[1], number_lines * one_line_len, one_line_len);
 	if (!point)
 		exit(EXIT_FAILURE);
-	//free(map_info);
-	printf("map size: %d\n", map_info[0] * map_info[1]);
+	printf("map size: %d\n", number_lines * one_line_len);
 	fill_in_proj(point, map_info);
 	free(map_info);
 

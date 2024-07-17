@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/08 17:21:00 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:20:33 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ t_point	*parsing(char *map, int total_length, int one_line_len)
 		i++;
 	}
 	result[total_length].x = -1;
-	result[total_length].y = -1;
-	result[total_length].z = -1;
+	//result[total_length].y = -1;
+	//result[total_length].z = -1;
 
 	return (result);
 }
