@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:56:05 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/22 15:26:56 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:40:51 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,17 @@ void	fill_in_proj(t_point *point, int *size)
 	biggest = size[0];
 	if (size[1] > size[0])
 		biggest = size[1];
-
+	printf("biggest: %d \n", biggest);
 	if (biggest < 15)
 		zoom = 30;
 	else if (biggest < 60)
-		zoom = 20;
+		zoom = 15;
 	else if (biggest < 100)
 		zoom = 12;
 	else if (biggest < 200)
-		zoom = 7;
+		zoom = 8;
+	else if (biggest < 350)
+		zoom = 5;
 	else if (biggest < 500)
 		zoom = 3;
 	else

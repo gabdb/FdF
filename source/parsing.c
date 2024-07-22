@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/17 13:20:33 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:43:56 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,11 @@ int	*check_map(int ac, char **argv)
 		{
 			count_line++;
 			if (ft_count_words(line, ' ') != len)
-				return (free(line), printf("map not square !\n"), NULL);
+			{
+				free(line);
+				printf("map not rectangular !\n");
+				exit(EXIT_FAILURE);
+			}
 		}
 	}
 	result = (int *)malloc(2 * sizeof(int)); //pas protégé, 2 places ca passe
