@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:44 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/22 14:30:14 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:28:32 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,10 @@ void	draw_line(t_point *p1, t_point *p2, t_mlx *v)
 		sy = -1;
 	while (1)
 	{
-		if (x < 1920 && y < 1080) //taille window a determiner
+		if (x >= 0 && x < 1920 && y >= 0 && y < 1080) //taille window a determiner
 			*(int *)(v->img_data + (x * (v->bpp / 8)) + (y * v->size_line)) = p1->color;
-		if (y == p2->y_proj)
-		{
-			if (x > p2->x_proj - 2)
-				break;
-		}
+		if (x > p2->x_proj - 2 && y >= p2->y_proj - 2)
+			break;
 		e2 = 2 * err;
 		if (e2 > -dy)
 		{

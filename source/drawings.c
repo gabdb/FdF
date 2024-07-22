@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:56:05 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/08 17:21:16 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:26:56 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,29 @@ void	draw_points(t_mlx *v, t_point *point)
 // size[0] == number of lines et size[1] == one_line_len
 void	fill_in_proj(t_point *point, int *size)
 {
-	int	i;
+	int		i;
 	float	x;
 	float	y;
 	float	z;
 	int		zoom;
+	int		biggest;
 
-	if (size[0] * size[1] < 250)
+	biggest = size[0];
+	if (size[1] > size[0])
+		biggest = size[1];
+
+	if (biggest < 15)
+		zoom = 30;
+	else if (biggest < 60)
 		zoom = 20;
-	else if (size[0] * size[1] < 3000)
-		zoom = 10;
+	else if (biggest < 100)
+		zoom = 12;
+	else if (biggest < 200)
+		zoom = 7;
+	else if (biggest < 500)
+		zoom = 3;
 	else
-		zoom = 5;
+		zoom = 1;
 	i = 0;
 	while (point[i].x != -1)
 	{
