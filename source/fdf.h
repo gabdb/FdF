@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/08 17:21:32 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:04:37 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,25 @@ int		*check_map(int ac, char **argv);
 t_point	*parsing(char *map, int total_length, int one_line_len);
 
 //HELP_PARSING
-int	index_base(char c, char *base);
-int	my_atoi_base(char *str);
+int	    index_base(char c, char *base);
+int	    my_atoi_base(char *str);
 
 //KEYBOARD STUFF
-int handle_esc(int keycode, void *param);
+int     handle_esc(int keycode, void *param);
 
 //DRAWINGS
 void	draw_points(t_mlx *v, t_point *point);
 void	fill_in_proj(t_point *point, int *size);
+
+//DRAW LINES
+void	bresenham(t_point *point, t_mlx *v, int one_line_len, int number_lines);
+void	draw_line(t_point *p1, t_point *p2, t_mlx *v);
+int	    has_below_neighbor(t_point *point, int number_lines);
+int	    has_right_neighbor(t_point *point, int one_line_len);
+
+
+//HELP
+int     ft_abs(int a);
+
 
 #endif

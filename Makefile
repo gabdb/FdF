@@ -37,6 +37,7 @@ SRCS =	source/main.c\
 		source/keyboard.c\
 		source/drawings.c\
 		source/draw_lines.c\
+		source/help.c\
 
 OBJS = $(SRCS:.c=.o)
 

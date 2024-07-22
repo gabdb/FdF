@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:44 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/17 16:53:25 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:30:14 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,38 +31,66 @@ int	has_below_neighbor(t_point *point, int number_lines)
 
 void	draw_line(t_point *p1, t_point *p2, t_mlx *v)
 {
-	// cest de la merde pr linstant !!
-	int	p;
-	int	x;
+	int	x; //structure a venir
 	int	y;
 	int	dx;
 	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
 
+	dx = ft_abs(p2->x_proj - p1->x_proj);
+	dy = ft_abs(p2->y_proj - p1->y_proj);
+	err = dx - dy;
 	x = p1->x_proj;
 	y = p1->y_proj;
-	dx = p1->x_proj - p2->x_proj;
-	dy = p1->y_proj - p2->y_proj;
-	p = 2 * dy - dx;
-	while (x != p2->x_proj && y != p2->y_proj)
+	if (x < p2->x_proj)
+		sx = 1;
+	else
+		sx = -1;
+	if (y < p2->y_proj)
+		sy = 1;
+	else
+		sy = -1;
+	while (1)
 	{
-		if (p < 0)
+		if (x < 1920 && y < 1080) //taille window a determiner
+			*(int *)(v->img_data + (x * (v->bpp / 8)) + (y * v->size_line)) = p1->color;
+		if (y == p2->y_proj)
 		{
-			//plot horizontal or vertical: *(int *)(v->img_data + ...) = p2->color;
-			p = p + 2 * dy;
-			//update x or y
+			if (x > p2->x_proj - 2)
+				break;
 		}
-		else
+		e2 = 2 * err;
+		if (e2 > -dy)
 		{
-			//plot diagonal
-			p = p + 2 * (dy - dy);
-			//update x and y by 1
+    		err -= dy;
+        	x += sx;
+        }
+        if (e2 < dx)
+		{
+    		err += dx;
+        	y += sy;
 		}
 	}
 }
 
+
+// loop through whole array of t_points.
+// each time a neighbor is found, a `draw_line` function is called,
+// with both t_points that ought to be connected as parameters.
 void	bresenham(t_point *point, t_mlx *v, int one_line_len, int number_lines)
 {
-	// loop through whole array of t_points.
-	// each time a neighbor is found, a `draw_line` function is called,
-	// with both t_points that ought to be connected as parameters.
+	t_point	*current;
+
+	current = point;
+	while (current->x != -1)
+	{
+		if (has_right_neighbor(current, one_line_len))
+			draw_line(current, current + 1, v);
+		if (has_below_neighbor(current, number_lines))
+			draw_line(current, current + one_line_len, v);
+		current += 1;
+	}
 }

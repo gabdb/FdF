@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:20:06 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/17 14:14:59 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:08:01 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main(int ac, char **av)
 	v.img_data = mlx_get_data_addr(v.img_ptr, &v.bpp, &v.size_line, &v.endian);
 
 	draw_points(&v, point);
+	bresenham(point, &v, one_line_len, number_lines);
 	mlx_put_image_to_window(v.mlx_ptr, v.win_ptr, v.img_ptr, 0, 0);
 	mlx_key_hook(v.win_ptr, handle_esc, NULL);
 	mlx_loop(v.mlx_ptr);
