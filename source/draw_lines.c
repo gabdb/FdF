@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:44 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/22 15:55:09 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:36:43 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ void	draw_line(t_point *p1, t_point *p2, t_mlx *v)
 	int	err;
 	int	e2;
 
-	dx = ft_abs(p2->x_proj - p1->x_proj);
-	dy = ft_abs(p2->y_proj - p1->y_proj);
+	dx = ft_abs((int)p2->x_proj - (int)p1->x_proj);
+	dy = ft_abs((int)p2->y_proj - (int)p1->y_proj);
 	err = dx - dy;
-	x = p1->x_proj;
-	y = p1->y_proj;
-	if (x < p2->x_proj)
+	x = (int)p1->x_proj;
+	y = (int)p1->y_proj;
+	if (x < (int)p2->x_proj)
 		sx = 1;
 	else
 		sx = -1;
-	if (y < p2->y_proj)
+	if (y < (int)p2->y_proj)
 		sy = 1;
 	else
 		sy = -1;
@@ -57,7 +57,7 @@ void	draw_line(t_point *p1, t_point *p2, t_mlx *v)
 	{
 		if (x >= 0 && x < 1920 && y >= 0 && y < 1080) //taille window a determiner
 			*(int *)(v->img_data + (x * (v->bpp / 8)) + (y * v->size_line)) = p1->color;
-		if (x >= (int)p2->x_proj - 3 && y >= (int)p2->y_proj - 3)
+		if (x == (int)p2->x_proj && y == (int)p2->y_proj)
 		{
 			printf("about to break ! x is now: %d while x_limit: %d\n", x, (int)p2->x_proj);
 			printf("about to break ! y is now: %d while y_limit: %d\n\n", y, (int)p2->y_proj);
