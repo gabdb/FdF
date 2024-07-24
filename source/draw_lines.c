@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:44 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/24 14:36:43 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:43:27 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	draw_line(t_point *p1, t_point *p2, t_mlx *v)
 			*(int *)(v->img_data + (x * (v->bpp / 8)) + (y * v->size_line)) = p1->color;
 		if (x == (int)p2->x_proj && y == (int)p2->y_proj)
 		{
-			printf("about to break ! x is now: %d while x_limit: %d\n", x, (int)p2->x_proj);
-			printf("about to break ! y is now: %d while y_limit: %d\n\n", y, (int)p2->y_proj);
+			//printf("about to break ! x is now: %d while x_limit: %d\n", x, (int)p2->x_proj);
+			//printf("about to break ! y is now: %d while y_limit: %d\n\n", y, (int)p2->y_proj);
 			break;
 		}
 		e2 = 2 * err;
@@ -74,6 +74,7 @@ void	draw_line(t_point *p1, t_point *p2, t_mlx *v)
     		err += dx;
         	y += sy;
 		}
+		//printf("x: %d and y: %d\n", x, y);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:20:06 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/22 15:28:56 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:34:18 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int main(int ac, char **av)
 	draw_points(&v, point);
 	bresenham(point, &v, one_line_len, number_lines);
 	write(1, "bresenham a marche\n", 19);
+	free(point);
 	mlx_put_image_to_window(v.mlx_ptr, v.win_ptr, v.img_ptr, 0, 0);
 	mlx_key_hook(v.win_ptr, handle_esc, NULL);
 	mlx_loop(v.mlx_ptr);
 
-	free(point);
 	return (0);
 }
 

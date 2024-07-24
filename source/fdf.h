@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/22 15:52:24 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:22:54 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int     handle_esc(int keycode, void *param);
 //DRAWINGS
 void	draw_points(t_mlx *v, t_point *point);
 void	fill_in_proj(t_point *point, int *size);
+void	re_arrange_z(t_point *point);
+void	reduce_z(t_point *point, int z);
 
 //DRAW LINES
 void	bresenham(t_point *point, t_mlx *v, int one_line_len, int number_lines);
