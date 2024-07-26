@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:20:06 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/24 16:34:18 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:36:05 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int ac, char **av)
 	if (!point)
 		exit(EXIT_FAILURE);
 	printf("map size: %d\n", number_lines * one_line_len);
-	fill_in_proj(point, map_info);
+	fill_in_proj(point, number_lines, one_line_len);
 	free(map_info);
 
 	v.mlx_ptr = mlx_init();

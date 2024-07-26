@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:56:05 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/24 17:37:14 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:34:50 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,47 +67,26 @@ void	re_arrange_z(t_point *point)
 	}
 }
 
-// size[0] == number of lines et size[1] == one_line_len
-void	fill_in_proj(t_point *point, int *size)
+void	fill_in_proj(t_point *point, int number_lines, int one_line_len)
 {
+	t_proj	p;
 	int		i;
-	float	x;
-	float	y;
-	float	z;
-	int		zoom;
-	int		biggest;
 
-	biggest = size[0];
-	if (size[1] > size[0])
-		biggest = size[1];
-	printf("biggest: %d \n", biggest);
-	if (biggest < 15)
-		zoom = 40;
-	else if (biggest < 35)
-		zoom = 27;
-	else if (biggest < 60)
-		zoom = 18;
-	else if (biggest < 100)
-		zoom = 12;
-	else if (biggest < 200)
-		zoom = 8;
-	else if (biggest < 350)
-		zoom = 5;
-	else if (biggest < 500)
-		zoom = 3;
-	else
-		zoom = 1;
+	p.biggest = number_lines;
+	if (one_line_len > number_lines)
+		p.biggest = one_line_len;
+	set_up_zoom(&p);
 	re_arrange_z(point);
 	i = 0;
 	while (point[i].x != -1)
 	{
-		x = point[i].x * zoom;
-		y = point[i].y * zoom;
-		z = point[i].z * zoom;
-		point[i].x_proj = (x - y) * (sqrt(3) / 2);
-		point[i].y_proj = ((x + y) / 2) - z;
+		p.x = point[i].x * p.zoom;
+		p.y = point[i].y * p.zoom;
+		p.z = point[i].z * p.zoom;
+		point[i].x_proj = (p.x - p.y) * (sqrt(3) / 2);
+		point[i].y_proj = ((p.x + p.y) / 2) - p.z;
 		point[i].x_proj += 1920 / 2;
-		point[i].y_proj += 950 / 2 - (zoom / 2) * size[1];
+		point[i].y_proj += 950 / 2 - (p.zoom / 2) * one_line_len;
 		i++;
 	}
 }

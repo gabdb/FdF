@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/22 15:43:56 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:06:48 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	*check_map(int ac, char **argv)
 		exit(EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
 	if (-1 == fd)
-		return (0);
+		exit(EXIT_FAILURE);
 	line = get_next_line(fd);
 	if (!line || *line == '\0') //si *line == '\0' faudra free !
 		return (printf("empty map !\n"), NULL);
@@ -131,30 +131,3 @@ t_point	*parsing(char *map, int total_length, int one_line_len)
 
 	return (result);
 }
-
-/*
-int main(int ac, char **av)
-{
-	int		*result;
-	//int 	one_line_len;
-	t_point	*test;
-
-	if (access(av[1], F_OK) == -1) //à enlever, cest au cas ou la map nexiste pas (path oublié)
-    {
-        perror("Error");
-        printf("File '%s' does not exist.\n", av[1]);
-        return 1;
-    }
-	result = check_map(ac, av); //result est malloqué, donc free !
-	test = parsing(av[1], result[0] * result[1], result[1]);
-	free(result);
-
-	fill_in_proj(test);
-	int i = -1;
-	while (test[++i].x != -1)
-		printf("x = %f, y = %f, z = %f, color = %X, x_proj: %f and y_proj: %f\n", test[i].x, test[i].y, test[i].z, test[i].color, test[i].x_proj, test[i].y_proj);
-	free(test);
-
-	return 0;
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/24 17:22:54 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:34:24 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "../libft/libft.h"
 #ifdef __linux__
     # include <X11/keysym.h>
-    # include "../mlx_linux/mlx.h"
+    # include "../mlx/mlx.h"
 #endif
 #ifdef __APPLE__
     # define XK_Escape 53
@@ -63,6 +63,27 @@ typedef struct  s_mlx
 	int		endian;
 }               t_mlx;
 
+typedef struct s_proj
+{
+	float	x;
+	float	y;
+	float	z;
+	int		zoom;
+	int		biggest;
+}               t_proj;
+
+typedef struct s_draw
+{
+	int	x;
+	int	y;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+}               t_draw;
+
 //PARSING
 int		ft_count_words(char *s, char c);
 void	handle_color(t_point *point, char *map_point);
@@ -78,7 +99,7 @@ int     handle_esc(int keycode, void *param);
 
 //DRAWINGS
 void	draw_points(t_mlx *v, t_point *point);
-void	fill_in_proj(t_point *point, int *size);
+void	fill_in_proj(t_point *point, int number_lines, int one_line_len);
 void	re_arrange_z(t_point *point);
 void	reduce_z(t_point *point, int z);
 
@@ -92,5 +113,10 @@ int	    has_right_neighbor(t_point *point, int one_line_len);
 //HELP
 int     ft_abs(int a);
 
+//CUT_FUNCTIONS
+void	setting_up_sx_sy(t_draw *d, t_point *p2);
+void    update_err_and_x(t_draw *d);
+void	update_err_and_y(t_draw *d);
+void	set_up_zoom(t_proj *p);
 
 #endif

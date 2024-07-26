@@ -10,8 +10,8 @@ NAME = fdf
 LIBFT = libft/libft.a
 
 ifeq ($(shell uname), Linux)
-	MLX_DIR = ./mlx_linux
-	MLX_PATH = mlx_linux/libmlx.a
+	MLX_DIR = ./mlx
+	MLX_PATH = mlx/libmlx.a
 	MLX =  -L /usr/lib -lXext -lX11 -lm -lz 
 	MLX_OBJ = -I/usr/include -Imlx_linux -O3
 else
@@ -38,6 +38,7 @@ SRCS =	source/main.c\
 		source/drawings.c\
 		source/draw_lines.c\
 		source/help.c\
+		source/cut_functions.c\
 
 OBJS = $(SRCS:.c=.o)
 

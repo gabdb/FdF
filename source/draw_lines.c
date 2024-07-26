@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:44 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/24 16:43:27 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:26:42 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,50 +31,25 @@ int	has_below_neighbor(t_point *point, int number_lines)
 
 void	draw_line(t_point *p1, t_point *p2, t_mlx *v)
 {
-	int	x; //structure a venir
-	int	y;
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2;
+	t_draw d;
 
-	dx = ft_abs((int)p2->x_proj - (int)p1->x_proj);
-	dy = ft_abs((int)p2->y_proj - (int)p1->y_proj);
-	err = dx - dy;
-	x = (int)p1->x_proj;
-	y = (int)p1->y_proj;
-	if (x < (int)p2->x_proj)
-		sx = 1;
-	else
-		sx = -1;
-	if (y < (int)p2->y_proj)
-		sy = 1;
-	else
-		sy = -1;
+	d.dx = ft_abs((int)p2->x_proj - (int)p1->x_proj);
+	d.dy = ft_abs((int)p2->y_proj - (int)p1->y_proj);
+	d.err = d.dx - d.dy;
+	d.x = (int)p1->x_proj;
+	d.y = (int)p1->y_proj;
+	setting_up_sx_sy(&d, p2);
 	while (1)
 	{
-		if (x >= 0 && x < 1920 && y >= 0 && y < 1080) //taille window a determiner
-			*(int *)(v->img_data + (x * (v->bpp / 8)) + (y * v->size_line)) = p1->color;
-		if (x == (int)p2->x_proj && y == (int)p2->y_proj)
-		{
-			//printf("about to break ! x is now: %d while x_limit: %d\n", x, (int)p2->x_proj);
-			//printf("about to break ! y is now: %d while y_limit: %d\n\n", y, (int)p2->y_proj);
+		if (d.x >= 0 && d.x < 1920 && d.y >= 0 && d.y < 1080) //taille window a determiner
+			*(int *)(v->img_data + (d.x * (v->bpp / 8)) + (d.y * v->size_line)) = p1->color;
+		if (d.x == (int)p2->x_proj && d.y == (int)p2->y_proj)
 			break;
-		}
-		e2 = 2 * err;
-		if (e2 > -dy)
-		{
-    		err -= dy;
-        	x += sx;
-        }
-        if (e2 < dx)
-		{
-    		err += dx;
-        	y += sy;
-		}
-		//printf("x: %d and y: %d\n", x, y);
+		d.e2 = 2 * d.err;
+		if (d.e2 > -d.dy)
+			update_err_and_x(&d);
+        if (d.e2 < d.dx)
+			update_err_and_y(&d);
 	}
 }
 
