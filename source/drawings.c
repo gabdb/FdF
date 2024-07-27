@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:56:05 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/26 17:34:50 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:31:03 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	reduce_z(t_point *point, int z)
 	{
 		while (point[i].x != -1)
 		{
-			point[i].z /= 4;
+			point[i].z /= 3;
 			i++;
 		}
 	}
@@ -43,7 +43,7 @@ void	reduce_z(t_point *point, int z)
 	{
 		while (point[i].x != -1)
 		{
-			point[i].z /= 10;
+			point[i].z /= 6;
 			i++;
 		}
 	}
@@ -82,7 +82,7 @@ void	fill_in_proj(t_point *point, int number_lines, int one_line_len)
 	{
 		p.x = point[i].x * p.zoom;
 		p.y = point[i].y * p.zoom;
-		p.z = point[i].z * p.zoom;
+		p.z = point[i].z * p.zoom / 2;
 		point[i].x_proj = (p.x - p.y) * (sqrt(3) / 2);
 		point[i].y_proj = ((p.x + p.y) / 2) - p.z;
 		point[i].x_proj += 1920 / 2;

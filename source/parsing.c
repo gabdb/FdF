@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/26 18:06:48 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/27 22:59:22 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,43 +51,31 @@ void	handle_color(t_point *point, char *map_point)
 
 int	*check_map(int ac, char **argv)
 {
-	int		*result; // [count_lines, one_line_len]
-	int		fd;
-	int		len;
-	int		count_line;
-	char	*line;
+	t_map	m;
 
 	if (ac != 2)
 		exit(EXIT_FAILURE);
-	fd = open(argv[1], O_RDONLY);
-	if (-1 == fd)
+	m.fd = open(argv[1], O_RDONLY);
+	if (-1 == m.fd)
 		exit(EXIT_FAILURE);
-	line = get_next_line(fd);
-	if (!line || *line == '\0') //si *line == '\0' faudra free !
+	m.line = get_next_line(m.fd);
+	if (!m.line || *m.line == '\0') //si *line == '\0' faut free ?
 		return (printf("empty map !\n"), NULL);
-	len = ft_count_words(line, ' ');
-	count_line = 1;
-	while (line != NULL)
+	m.len = ft_count_words(m.line, ' ');
+	m.count_line = 1;
+	while (m.line != NULL)
 	{
-		free(line);
-		line = get_next_line(fd);
-		if (line != NULL)
+		free(m.line);
+		m.line = get_next_line(m.fd);
+		if (m.line != NULL)
 		{
-			count_line++;
-			if (ft_count_words(line, ' ') != len)
-			{
-				free(line);
-				printf("map not rectangular !\n");
-				exit(EXIT_FAILURE);
-			}
+			m.count_line++;
+			if (ft_count_words(m.line, ' ') != m.len)
+				free_line_exit(m.line);
 		}
 	}
-	result = (int *)malloc(2 * sizeof(int)); //pas protégé, 2 places ca passe
-	if (!result)
-		exit(EXIT_FAILURE); //faut free line aussi
-	*result = count_line;
-	*(result + 1) = len;
-	return (free(line), result);
+	m.result = protected_malloc(m.count_line, m.len);
+	return (m.result); //avant yavait un free line mais jcrois inutile
 }
 
 //total_length cest le nombre de points sur la map.
@@ -126,8 +114,5 @@ t_point	*parsing(char *map, int total_length, int one_line_len)
 		i++;
 	}
 	result[total_length].x = -1;
-	//result[total_length].y = -1;
-	//result[total_length].z = -1;
-
 	return (result);
 }

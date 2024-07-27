@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/26 17:34:24 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/27 17:04:28 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct  s_mlx
 	int		endian;
 }               t_mlx;
 
-typedef struct s_proj
+typedef struct	s_proj
 {
 	float	x;
 	float	y;
@@ -72,7 +72,7 @@ typedef struct s_proj
 	int		biggest;
 }               t_proj;
 
-typedef struct s_draw
+typedef struct	s_draw
 {
 	int	x;
 	int	y;
@@ -83,6 +83,15 @@ typedef struct s_draw
 	int	err;
 	int	e2;
 }               t_draw;
+
+typedef struct	s_map
+{
+	int		*result;
+	int		fd;
+	int		len;
+	int		count_line;
+	char	*line;
+}				t_map;
 
 //PARSING
 int		ft_count_words(char *s, char c);
@@ -113,10 +122,14 @@ int	    has_right_neighbor(t_point *point, int one_line_len);
 //HELP
 int     ft_abs(int a);
 
-//CUT_FUNCTIONS
+//CUT FUNCTIONS
 void	setting_up_sx_sy(t_draw *d, t_point *p2);
 void    update_err_and_x(t_draw *d);
 void	update_err_and_y(t_draw *d);
 void	set_up_zoom(t_proj *p);
+
+//CUT AND CRASSES
+void	free_line_exit(char *line);
+int		*protected_malloc(int count_line, int len);
 
 #endif
