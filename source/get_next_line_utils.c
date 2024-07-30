@@ -6,19 +6,19 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:45:29 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/25 14:45:54 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:05:41 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_list	*ft_lstnew(char *content)
+t_listt	*ft_lstneww(char *content)
 {
-	t_list	*new_elem;
+	t_listt	*new_elem;
 
 	if (content)
 	{
-		new_elem = (t_list *)malloc(sizeof(t_list));
+		new_elem = (t_listt *)malloc(sizeof(t_listt));
 		if (!new_elem)
 			return (NULL);
 		new_elem->content = content;
@@ -31,9 +31,9 @@ t_list	*ft_lstnew(char *content)
 	return (NULL);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_backk(t_listt **lst, t_listt *new)
 {
-	t_list	*last;
+	t_listt	*last;
 
 	if (!lst || !new)
 		return ;
@@ -48,7 +48,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 }
 
-char	*ft_strchr_bis(t_list *lst, int c, int loop)
+char	*ft_strchr_bis(t_listt *lst, int c, int loop)
 {
 	const char	*s;
 
@@ -92,7 +92,7 @@ char	*ft_strdup(const char *s1)
 	return (copy);
 }
 
-void	ft_strjoin_bis(char *line, t_list *node, size_t len)
+void	ft_strjoin_bis(char *line, t_listt *node, size_t len)
 {
 	size_t	i;
 	char	*tmp;

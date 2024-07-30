@@ -1,46 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   help_parsing.c                                     :+:      :+:    :+:   */
+/*   cut_and_free.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 14:35:23 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/30 18:18:54 by gnyssens         ###   ########.fr       */
+/*   Created: 2024/07/27 16:27:09 by gnyssens          #+#    #+#             */
+/*   Updated: 2024/07/30 17:52:32 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	index_base(char c, char *base)
+void	free_line_exit(char *line)
+{
+	free(line);
+	write(1, "map not rectangular !\n", 22);
+	exit(EXIT_FAILURE);
+}
+
+void	free_result_exit(t_point *point)
+{
+	free(point);
+	exit(EXIT_FAILURE);
+}
+
+void	free_line_result_exit(t_point *point, char *line)
+{
+	free(line);
+	free(point);
+	exit(EXIT_FAILURE);
+}
+
+void	free_double(char **line)
 {
 	int	i;
 
 	i = 0;
-	while (base[i])
+	while (line[i] != NULL)
 	{
-		if (c == base[i] || (c - 32) == base[i])
-			return (i);
+		free(line[i]);
 		i++;
 	}
-	return (-1);
-}
-
-int	my_atoi_base(char *str)
-{
-	char	*base;
-	int		i;
-	int		index;
-	int		result;
-
-	base = "0123456789ABCDEF";
-	result = 0;
-	i = 0;
-	while (str[i])
-	{
-		index = index_base(str[i], base);
-		result = result * 16 + index;
-		i++;
-	}
-	return (result);
+	free(line[i]);
+	free(line);
 }

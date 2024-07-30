@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:15:05 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/26 17:33:23 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:16:18 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	setting_up_sx_sy(t_draw *d, t_point *p2)
 
 void	update_err_and_x(t_draw *d)
 {
-    d->err -= d->dy;
-    d->x += d->sx;
+	d->err -= d->dy;
+	d->x += d->sx;
 }
 
 void	update_err_and_y(t_draw *d)
 {
-    d->err += d->dx;
-    d->y += d->sy;
+	d->err += d->dx;
+	d->y += d->sy;
 }
 
 void	set_up_zoom(t_proj *p)

@@ -6,15 +6,15 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:44:36 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/25 14:44:45 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:06:05 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_list	**free_node(t_list **node, int loop)
+t_listt	**free_node(t_listt **node, int loop)
 {
-	t_list	*tmp;
+	t_listt	*tmp;
 
 	if (!node || !*node)
 		return (NULL);
@@ -30,9 +30,9 @@ t_list	**free_node(t_list **node, int loop)
 	return (node);
 }
 
-char	*get_line_from_list(t_list *lst)
+char	*get_line_from_list(t_listt *lst)
 {
-	t_list	*head;
+	t_listt	*head;
 	char	*line;
 	size_t	len;
 	size_t	total_len;
@@ -56,10 +56,10 @@ char	*get_line_from_list(t_list *lst)
 	return (line);
 }
 
-void	clean_buffer(t_list **lst)
+void	clean_buffer(t_listt **lst)
 {
-	t_list	*curr;
-	t_list	*next;
+	t_listt	*curr;
+	t_listt	*next;
 	char	*newline_pos;
 
 	curr = *lst;
@@ -70,7 +70,7 @@ void	clean_buffer(t_list **lst)
 		newline_pos = ft_strchr_bis(curr, '\n', 0);
 		if (newline_pos)
 		{
-			next = ft_lstnew(ft_strdup(newline_pos + 1));
+			next = ft_lstneww(ft_strdup(newline_pos + 1));
 			if (next)
 			{
 				next->next = curr->next;
@@ -85,11 +85,11 @@ void	clean_buffer(t_list **lst)
 	}
 }
 
-int	read_to_buffer(int fd, t_list **lst)
+int	read_to_buffer(int fd, t_listt **lst)
 {
 	char	*buf;
 	ssize_t	bytes_read;
-	t_list	*new_node;
+	t_listt	*new_node;
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
@@ -101,19 +101,19 @@ int	read_to_buffer(int fd, t_list **lst)
 		return (bytes_read);
 	}
 	buf[bytes_read] = '\0';
-	new_node = ft_lstnew(buf);
+	new_node = ft_lstneww(buf);
 	if (!new_node)
 	{
 		free(buf);
 		return (-1);
 	}
-	ft_lstadd_back(lst, new_node);
+	ft_lstadd_backk(lst, new_node);
 	return (bytes_read);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_list	*bf;
+	static t_listt	*bf;
 	char			*line;
 	int				res;
 

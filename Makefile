@@ -25,7 +25,7 @@ MLX_LIB = -L $(MLX_DIR) -lmlx
 
 CC = cc
 
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra -fsanitize=address -g
 
 RM = rm -rf
 
@@ -39,6 +39,8 @@ SRCS =	source/main.c\
 		source/draw_lines.c\
 		source/help.c\
 		source/cut_functions.c\
+		source/cut_and_free.c\
+		source/malloc_free.c\
 
 OBJS = $(SRCS:.c=.o)
 
