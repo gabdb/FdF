@@ -6,16 +6,31 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:18:22 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/30 18:21:57 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:58:00 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int handle_esc(int keycode, void *param)
+int	handle_cross(t_mlx *v)
 {
-	(void)param;
+	clean_mlx(v);
+	return (0);
+}
+
+void	clean_mlx(t_mlx *v)
+{
+	if (v->img_ptr)
+		mlx_destroy_image(v->mlx_ptr, v->img_ptr);
+	if (v->win_ptr)
+		mlx_destroy_window(v->mlx_ptr, v->win_ptr);
+	free(v->mlx_ptr);
+	exit(EXIT_SUCCESS);
+}
+
+int	handle_esc(int keycode, t_mlx *v)
+{
 	if (53 == keycode)
-		exit(EXIT_SUCCESS);
+		clean_mlx(v);
 	return (0);
 }
