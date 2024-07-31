@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 16:27:09 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/30 17:52:32 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/31 17:48:05 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,10 @@ void	free_double(char **line)
 	}
 	free(line[i]);
 	free(line);
+}
+
+void	exit_msg(void)
+{
+	write(1, "not a valid map !\n", 18);
+	exit(EXIT_FAILURE);
 }

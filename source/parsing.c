@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/30 18:47:00 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/31 17:48:31 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	*check_map(int ac, char **argv)
 		args_exit();
 	m.fd = open(argv[1], O_RDONLY);
 	if (-1 == m.fd)
-		exit(EXIT_FAILURE);
+		exit_msg();
 	m.line = get_next_line(m.fd);
 	if (!m.line || *m.line == '\0')
 		return (printf("empty map !\n"), NULL);

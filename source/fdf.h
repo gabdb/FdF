@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:24:18 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/31 15:57:30 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/07/31 17:48:14 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # endif
 
 # include <math.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -134,6 +133,7 @@ void		free_line_exit(char *line);
 void		free_result_exit(t_point *point);
 void		free_line_result_exit(t_point *point, char *line);
 void		free_double(char **line);
+void		exit_msg(void);
 
 // MALLOC FREE
 int			*protected_malloc(int count_line, int len);
