@@ -59,7 +59,7 @@ $(NAME) : $(OBJS)
 	@echo "\033[0;34m	██║      ██████╔╝  ██║     		"
 	@echo "\033[0;34m	╚═╝      ╚═════╝   ╚═╝  			"
 	@echo "                 					"
-	@$(CC) $(OBJS) $(LIBFT) $(CFLAGS) -g $(MLX_LIB) $(MLX) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBFT) $(CFLAGS) $(MLX_LIB) $(MLX) -o $(NAME)
 
 %.o : %.c	
 	@$(CC) -o $@ -c $<

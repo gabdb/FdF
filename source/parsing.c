@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:25:35 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/07/31 17:48:31 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:01:09 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	*check_map(int ac, char **argv)
 		exit_msg();
 	m.line = get_next_line(m.fd);
 	if (!m.line || *m.line == '\0')
-		return (printf("empty map !\n"), NULL);
+		return (write(1, "empty map !\n", 12), NULL);
 	m.len = ft_count_words(m.line, ' ');
 	m.count_line = 1;
 	while (m.line != NULL)
