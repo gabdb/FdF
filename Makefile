@@ -9,18 +9,11 @@ NAME = fdf
 
 LIBFT = libft/libft.a
 
-ifeq ($(shell uname), Linux)
-	MLX_DIR = ./mlx
-	MLX_PATH = mlx/libmlx.a
-	MLX =  -L /usr/lib -lXext -lX11 -lm -lz 
-	MLX_OBJ = -I/usr/include -Imlx_linux -O3
-else
-	MLX_DIR = ./mlx
-	MLX_PATH = mlx/libmlx.a
-	MLX = -lmlx -Lmlx -framework OpenGl -framework AppKit
-	MLX_OBJ = -Imlx -c
-endif
- 
+MLX_DIR = ./mlx
+MLX_PATH = mlx/libmlx.a
+MLX =  -L /usr/lib -lXext -lX11 -lm -lz 
+MLX_OBJ = -I/usr/include -Imlx_linux -O3
+
 MLX_LIB = -L $(MLX_DIR) -lmlx
 
 CC = cc
